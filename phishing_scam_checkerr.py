@@ -1,10 +1,7 @@
 # Phishing Link and Scam Message Checker
-# Beginner project using Python Labs 1-7
-# Lab 1: input/output, variables | Lab 2: operators, if/elif/else
-# Lab 3: loops | Lab 4: strings | Lab 5: list, tuple, dictionary
-# Lab 6: functions | Lab 7: file handling
+# Beginner project using Python
 
-# ---------- Lab 5: data (list, tuple, dictionary) ----------
+# ---------- data (list, tuple, dictionary) ----------
 SUSPICIOUS_WORDS = ["login", "verify", "update", "secure", "account",
                     "bank", "free", "bonus", "gift", "password", "kyc"]
 SHORTENERS = ("bit.ly", "tinyurl.com", "t.co", "goo.gl", "cutt.ly", "rb.gy")
@@ -33,12 +30,12 @@ SCAM_PHRASES = {
 HISTORY_FILE = "history.txt"
 
 
-# ---------- Lab 6: functions ----------
+# ---------- functions ----------
 def get_host(url):
     """Return only the website name from a link."""
     url = url.lower().strip()
     if "://" in url:
-        url = url.split("://")[1]          # Lab 4: string methods
+        url = url.split("://")[1]          # string methods
     host = url.split("/")[0]
     return host
 
@@ -50,7 +47,7 @@ def check_link(url):
     url = url.lower().strip()
     host = get_host(url)
 
-    # Lab 2: conditions
+    # conditions
     if not url.startswith("https://"):
         score += 2
         reasons.append("Link does not use https")
@@ -75,7 +72,7 @@ def check_link(url):
         score += 2
         reasons.append("Too many sub-domains")
 
-    for s in SHORTENERS:                    # Lab 3: loop
+    for s in SHORTENERS:                    # loop
         if s in host:
             score += 2
             reasons.append("Shortened link (real destination hidden)")
@@ -137,7 +134,7 @@ def show_result(score, reasons):
     return verdict
 
 
-# ---------- Lab 7: file handling ----------
+# ---------- file handling ----------
 def save_history(kind, text, score, verdict):
     f = open(HISTORY_FILE, "a")
     f.write(kind + " | " + text + " | score=" + str(score) + " | " + verdict + "\n")
@@ -157,7 +154,7 @@ def show_history():
         print("No history yet.")
 
 
-# ---------- Lab 1: main menu ----------
+# ---------- main menu ----------
 def main():
     print("=== Phishing Link & Scam Message Checker ===")
     while True:
